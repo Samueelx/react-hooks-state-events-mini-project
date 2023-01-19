@@ -1,13 +1,8 @@
 import React from "react";
 
 function CategoryFilter({categories, onFilter}) {
-  function handleOnClick(e) {
-    e.target.className = "selected";
-    onFilter(e.target.innerText);
-  }
-
   const buttons = categories.map((category, index) => {
-    return <button key={index} onClick={handleOnClick}>{category}</button>
+    return <button key={index} onClick={() => onFilter(category)} className={category}>{category}</button>
   });
 
   return (

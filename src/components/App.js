@@ -13,11 +13,12 @@ function App() {
   const [categories, setCategories] = useState(CATEGORIES);
 
   const filterCategories = (category) => {
-    setTasks(() => {
-      if(category === "All") return TASKS
-      const selectedTasks = tasks.filter((task) => task.category === category);
-      return selectedTasks;
-    });
+    categories.forEach(cat => {
+      cat !== category ?
+        document.querySelector(`.${cat}`).classList.remove("selected") :
+        document.querySelector(`.${category}`).classList.add("selected");
+      setTasks(() => tasks.filter(task => category === "All" ? true : task.category === category));
+    })
   }
 
   const updateTasks = (text) => {
