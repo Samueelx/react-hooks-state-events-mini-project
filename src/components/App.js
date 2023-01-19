@@ -25,12 +25,18 @@ function App() {
     setTasks(updatedTasks);
   }
 
+  const removeTasks = (index) => {
+    tasks.splice(index, 1);
+    const updatedTasks = [...tasks];
+    setTasks(() => {return updatedTasks});
+  }
+
   return (
     <div className="App">
       <h2>My tasks</h2>
       <CategoryFilter categories={categories} onFilter={filterCategories}/>
       <NewTaskForm categories={categories} onTaskFormSubmit={updateTasks}/>
-      <TaskList tasks={tasks}/>
+      <TaskList tasks={tasks} onRemove={removeTasks}/>
     </div>
   );
 }
